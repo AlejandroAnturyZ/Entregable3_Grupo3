@@ -1,0 +1,103 @@
+<div class="row justify-content-center">
+  <div class="col-lg-8">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <a href="/" class="bio-btn bio-btn-outline bio-btn-sm">
+        Volver al listado
+      </a>
+      <span class="id-badge" onclick="copiarId('{{avistamiento._id}}', this)">ID: {{avistamiento._id}}</span>
+    </div>
+
+    <div class="bio-card">
+      <div class="bio-card-header">
+        <h5 class="bio-card-title">Actualizar Avistamiento: {{avistamiento.nombreComun}}</h5>
+        <div class="bio-card-subtitle">Modificación de datos taxonómicos, zona de expedición o estado de conservación</div>
+      </div>
+
+      <div class="bio-card-body">
+        <form action="/api/avistamientos/update/{{avistamiento._id}}" method="POST" class="row g-3">
+          <div class="col-md-6">
+            <label for="nombreComun" class="bio-label">Nombre Común <span class="bio-required">*</span></label>
+            <input
+              type="text"
+              class="form-control bio-input"
+              id="nombreComun"
+              name="nombreComun"
+              value="{{avistamiento.nombreComun}}"
+              required
+            />
+          </div>
+
+          <div class="col-md-6">
+            <label for="nombreCientifico" class="bio-label">Nombre Científico <span class="bio-required">*</span></label>
+            <input
+              type="text"
+              class="form-control bio-input fst-italic"
+              id="nombreCientifico"
+              name="nombreCientifico"
+              value="{{avistamiento.nombreCientifico}}"
+              required
+            />
+          </div>
+
+          <div class="col-md-6">
+            <label for="categoria" class="bio-label">Categoría Biológica <span class="bio-required">*</span></label>
+            <select class="form-select bio-select" id="categoria" name="categoria" required>
+              {{#each categorias}}
+                <option value="{{this}}" {{#if (eq this ../avistamiento.categoria)}}selected{{/if}}>{{this}}</option>
+              {{/each}}
+            </select>
+          </div>
+
+          <div class="col-md-6">
+            <label for="investigador" class="bio-label">Investigador que Reporta <span class="bio-required">*</span></label>
+            <input
+              type="text"
+              class="form-control bio-input"
+              id="investigador"
+              name="investigador"
+              value="{{avistamiento.investigador}}"
+              required
+            />
+          </div>
+
+          <div class="col-12 mt-4">
+            <div class="bio-highlight-field">
+              <div class="small fw-bold mb-3" style="color: var(--bio-primary);">
+                Campos de seguimiento prioritario en campo (RF-02.3)
+              </div>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label for="zona" class="bio-label">Zona de Expedición <span class="bio-required">*</span></label>
+                  <input
+                    type="text"
+                    class="form-control bio-input"
+                    id="zona"
+                    name="zona"
+                    value="{{avistamiento.zona}}"
+                    required
+                  />
+                </div>
+
+                <div class="col-md-6">
+                  <label for="estadoConservacion" class="bio-label">Estado de Conservación <span class="bio-required">*</span></label>
+                  <select class="form-select bio-select" id="estadoConservacion" name="estadoConservacion" required>
+                    {{#each estadosConservacion}}
+                      <option value="{{this}}" {{#if (eq this ../avistamiento.estadoConservacion)}}selected{{/if}}>{{this}}</option>
+                    {{/each}}
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 d-flex justify-content-end gap-2 mt-4">
+            <a href="/" class="bio-btn bio-btn-outline">Cancelar</a>
+            <button type="submit" class="bio-btn bio-btn-primary">
+              Guardar Cambios
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

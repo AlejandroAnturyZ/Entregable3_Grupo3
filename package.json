@@ -1,0 +1,28 @@
+{
+  "name": "biocaqueta-app",
+  "version": "1.0.0",
+  "description": "Sistema de Monitoreo de Biodiversidad y Avistamientos del Piedemonte Amazónico (BioCaquetá) - Universidad de la Amazonia",
+  "type": "module",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "node --watch src/app.js"
+  },
+  "keywords": [
+    "biocaqueta",
+    "udla",
+    "nodejs",
+    "express",
+    "mongodb-atlas",
+    "handlebars",
+    "mongoose"
+  ],
+  "author": "Jean Carlos Celis, Vicente Casanova, Alejandro Antury",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.6.1",
+    "express": "^4.21.1",
+    "express-handlebars": "^8.0.1",
+    "mongoose": "^8.8.1"
+  }
+}

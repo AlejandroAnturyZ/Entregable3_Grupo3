@@ -1,0 +1,83 @@
+.bio-card {
+  background-color: var(--bio-bg-surface);
+  border: 1px solid var(--bio-border);
+  border-radius: var(--bio-radius-md);
+  box-shadow: var(--bio-shadow-md);
+  overflow: hidden;
+  transition: var(--bio-transition);
+}
+
+.bio-card:hover {
+  box-shadow: var(--bio-shadow-hover);
+  border-color: var(--bio-border-strong);
+}
+
+.bio-card-header {
+  background: linear-gradient(90deg, var(--bio-bg-soft) 0%, #f7fbf8 100%);
+  border-bottom: 1px solid var(--bio-border);
+  padding: 18px 24px;
+}
+
+.bio-card-title {
+  color: var(--bio-primary);
+  font-weight: 700;
+  font-size: 1.08rem;
+  margin: 0;
+}
+
+.bio-card-subtitle {
+  color: var(--bio-text-muted);
+  font-size: 0.83rem;
+  margin-top: 2px;
+}
+
+.bio-card-body {
+  padding: 24px;
+}
+
+.bio-alert {
+  border-radius: var(--bio-radius-sm);
+  border: 1px solid var(--bio-border);
+  padding: 14px 18px;
+  font-size: 0.92rem;
+}
+
+.bio-alert-warning {
+  background-color: var(--bio-amber-bg);
+  border-color: #fcd34d;
+  color: var(--bio-amber);
+}
+
+.bio-alert-success {
+  background-color: var(--bio-primary-light);
+  border-color: var(--bio-border-strong);
+  color: var(--bio-primary);
+}
+
+.bio-alert-danger {
+  background-color: var(--bio-danger-bg);
+  border-color: #fca5a5;
+  color: var(--bio-danger);
+}
+
+.bio-modal-content {
+  background-color: var(--bio-bg-surface);
+  border: 1px solid var(--bio-border);
+  border-radius: var(--bio-radius-md);
+  box-shadow: var(--bio-shadow-hover);
+}
+
+.bio-modal-header {
+  background-color: var(--bio-bg-soft);
+  border-bottom: 1px solid var(--bio-border);
+  color: var(--bio-primary);
+  padding: 16px 22px;
+}
+
+.bio-info-box {
+  background-color: var(--bio-bg-main);
+  border: 1px solid var(--bio-border);
+  border-radius: var(--bio-radius-sm);
+  padding: 14px 16px;
+}
+

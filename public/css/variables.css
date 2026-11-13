@@ -1,0 +1,51 @@
+:root {
+  --bio-bg-main: #f4f9f5;
+  --bio-bg-surface: #ffffff;
+  --bio-bg-soft: #ebf5ee;
+  --bio-bg-accent: #e1f0e7;
+  --bio-primary: #166534;
+  --bio-primary-hover: #14532d;
+  --bio-primary-light: #dcfce7;
+  --bio-secondary: #0f766e;
+  --bio-amber: #b45309;
+  --bio-amber-bg: #fef3c7;
+  --bio-danger: #b91c1c;
+  --bio-danger-bg: #fee2e2;
+  --bio-text-main: #162a20;
+  --bio-text-muted: #526b5e;
+  --bio-border: #d3e5da;
+  --bio-border-strong: #a7d0b8;
+  --bio-radius-sm: 8px;
+  --bio-radius-md: 14px;
+  --bio-radius-lg: 18px;
+  --bio-shadow-sm: 0 2px 8px rgba(22, 101, 52, 0.05);
+  --bio-shadow-md: 0 10px 26px rgba(22, 101, 52, 0.08);
+  --bio-shadow-hover: 0 14px 32px rgba(22, 101, 52, 0.13);
+  --bio-transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+body {
+  background-color: var(--bio-bg-main);
+  background-image: radial-gradient(circle at 10% 10%, rgba(22, 101, 52, 0.04) 0%, transparent 45%),
+    radial-gradient(circle at 90% 85%, rgba(15, 118, 110, 0.04) 0%, transparent 45%);
+  color: var(--bio-text-main);
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  line-height: 1.55;
+  letter-spacing: -0.01em;
+}
+
+.page-shell {
+  animation: fadeInPage 0.35s ease-out;
+}
+
+@keyframes fadeInPage {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+

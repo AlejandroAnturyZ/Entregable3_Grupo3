@@ -1,0 +1,230 @@
+{{#if alertaError}}
+  <div class="bio-alert bio-alert-danger d-flex justify-content-between align-items-center mb-4" role="alert">
+    <div><strong>Atención:</strong> {{alertaError}}</div>
+    <a href="/" class="bio-btn bio-btn-outline bio-btn-sm">Cerrar</a>
+  </div>
+{{/if}}
+
+{{#if alertaExito}}
+  <div class="bio-alert bio-alert-success d-flex justify-content-between align-items-center mb-4" role="alert">
+    <div>{{alertaExito}}</div>
+    <a href="/" class="bio-btn bio-btn-outline bio-btn-sm">Aceptar</a>
+  </div>
+{{/if}}
+
+{{#unless dbStatus.connected}}
+  <div class="bio-alert bio-alert-warning d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4" role="alert">
+    <div>
+      <div class="fw-bold mb-1">Conexión a MongoDB Atlas pendiente</div>
+      <div class="small">
+        Para registrar y consultar avistamientos en la base de datos <code>biocaqueta_db</code>, vincula tu URI de MongoDB Atlas desde el configurador o en el archivo <code>.env</code>.
+      </div>
+    </div>
+    <button class="bio-btn bio-btn-primary bio-btn-sm text-nowrap" data-bs-toggle="modal" data-bs-target="#modalMongoAtlas">
+      Configurar Atlas Ahora
+    </button>
+  </div>
+{{/unless}}
+
+<div class="bio-card mb-4">
+  <div class="bio-card-header d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-2">
+    <div>
+      <h5 class="bio-card-title">Registrar Nuevo Avistamiento en Campo</h5>
+      <div class="bio-card-subtitle">Expediciones de monitoreo ambiental &mdash; Reserva El Caraño, Río Hacha y Cordillera Oriental</div>
+    </div>
+    {{#if dbStatus.connected}}
+      <form action="/api/config/seed" method="POST" class="m-0">
+        <button type="submit" class="bio-btn bio-btn-soft bio-btn-sm">
+          Cargar Datos de Ejemplo
+        </button>
+      </form>
+    {{/if}}
+  </div>
+  <div class="bio-card-body">
+    <form action="/api/avistamientos" method="POST" class="row g-3">
+      <div class="col-md-4">
+        <label for="nombreComun" class="bio-label">Nombre Común <span class="bio-required">*</span></label>
+        <input
+          type="text"
+          class="form-control bio-input"
+          id="nombreComun"
+          name="nombreComun"
+          placeholder="Ej. Danta amazónica, Guacamaya bandera"
+          required
+        />
+      </div>
+
+      <div class="col-md-4">
+        <label for="nombreCientifico" class="bio-label">Nombre Científico <span class="bio-required">*</span></label>
+        <input
+          type="text"
+          class="form-control bio-input fst-italic"
+          id="nombreCientifico"
+          name="nombreCientifico"
+          placeholder="Ej. Tapirus terrestris"
+          required
+        />
+      </div>
+
+      <div class="col-md-4">
+        <label for="categoria" class="bio-label">Categoría Biológica <span class="bio-required">*</span></label>
+        <select class="form-select bio-select" id="categoria" name="categoria" required>
+          <option value="" selected disabled>Seleccione una categoría...</option>
+          {{#each categorias}}
+            <option value="{{this}}">{{this}}</option>
+          {{/each}}
+        </select>
+      </div>
+
+      <div class="col-md-4">
+        <label for="zona" class="bio-label">Zona de Expedición <span class="bio-required">*</span></label>
+        <input
+          type="text"
+          class="form-control bio-input"
+          id="zona"
+          name="zona"
+          list="zonasSugeridas"
+          placeholder="Ej. Río Hacha, El Caraño..."
+          required
+        />
+        <datalist id="zonasSugeridas">
+          <option value="Reserva Natural El Caraño"></option>
+          <option value="Río Hacha"></option>
+          <option value="Cordillera Oriental"></option>
+          <option value="Serranía de Chiribiquete"></option>
+          <option value="Belén de los Andaquíes"></option>
+        </datalist>
+      </div>
+
+      <div class="col-md-4">
+        <label for="estadoConservacion" class="bio-label">Estado de Conservación</label>
+        <select class="form-select bio-select" id="estadoConservacion" name="estadoConservacion">
+          {{#each estadosConservacion}}
+            <option value="{{this}}" {{#if (eq this "Preocupación menor")}}selected{{/if}}>{{this}}</option>
+          {{/each}}
+        </select>
+      </div>
+
+      <div class="col-md-4">
+        <label for="investigador" class="bio-label">Investigador que Reporta <span class="bio-required">*</span></label>
+        <input
+          type="text"
+          class="form-control bio-input"
+          id="investigador"
+          name="investigador"
+          placeholder="Nombre del estudiante o docente"
+          required
+        />
+      </div>
+
+      <div class="col-12 d-flex justify-content-end mt-4">
+        <button type="submit" class="bio-btn bio-btn-primary">
+          Guardar Avistamiento en Atlas
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="bio-card">
+  <div class="bio-card-header d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
+    <div>
+      <h5 class="bio-card-title d-flex align-items-center">
+        <span>Avistamientos Registrados</span>
+        <span class="count-pill">{{totalRegistros}}</span>
+      </h5>
+      <div class="bio-card-subtitle">Ordenados del más reciente al más antiguo desde la colección <code>avistamientos</code></div>
+    </div>
+
+    <form action="/" method="GET" class="filter-bar">
+      <label for="filtroCategoria" class="small fw-semibold text-nowrap mb-0">Categoría:</label>
+      <select name="categoria" id="filtroCategoria" class="form-select form-select-sm bio-select py-1" onchange="this.form.submit()">
+        <option value="">Todas las categorías</option>
+        {{#each categorias}}
+          <option value="{{this}}" {{#if (eq this ../categoriaSeleccionada)}}selected{{/if}}>{{this}}</option>
+        {{/each}}
+      </select>
+      {{#if categoriaSeleccionada}}
+        <a href="/" class="bio-btn bio-btn-outline bio-btn-sm">Limpiar</a>
+      {{/if}}
+    </form>
+  </div>
+
+  <div class="p-0">
+    {{#if avistamientos.length}}
+      <div class="table-responsive">
+        <table class="table bio-table align-middle">
+          <thead>
+            <tr>
+              <th class="ps-4">Especie</th>
+              <th>Categoría</th>
+              <th>Zona de Avistamiento</th>
+              <th>Estado de Conservación</th>
+              <th>Investigador</th>
+              <th>Fecha</th>
+              <th>ID (Postman)</th>
+              <th class="text-end pe-4">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each avistamientos}}
+              <tr class="bio-row">
+                <td class="ps-4">
+                  <div class="species-name">{{this.nombreComun}}</div>
+                  <div class="scientific-name">{{this.nombreCientifico}}</div>
+                </td>
+                <td>
+                  <span class="{{claseCategoria this.categoria}}">
+                    {{this.categoria}}
+                  </span>
+                </td>
+                <td>
+                  <span class="zone-text">{{this.zona}}</span>
+                </td>
+                <td>
+                  <span class="{{badgeConservacion this.estadoConservacion}}">
+                    {{this.estadoConservacion}}
+                  </span>
+                </td>
+                <td>
+                  <span class="researcher-text">{{this.investigador}}</span>
+                </td>
+                <td>
+                  <span class="date-text">{{formatearFecha this.fechaRegistro}}</span>
+                </td>
+                <td>
+                  <span class="id-badge" title="Clic para copiar el _id para Postman" onclick="copiarId('{{this._id}}', this)">
+                    {{this._id}}
+                  </span>
+                </td>
+                <td class="text-end pe-4">
+                  <div class="d-inline-flex gap-2">
+                    <a href="/editar/{{this._id}}" class="bio-btn bio-btn-soft bio-btn-sm">
+                      Editar
+                    </a>
+                    <form action="/api/avistamientos/delete/{{this._id}}" method="POST" class="d-inline" onsubmit="return confirm('¿Estás seguro de eliminar el registro de {{this.nombreComun}}?');">
+                      <button type="submit" class="bio-btn bio-btn-danger-outline bio-btn-sm">
+                        Eliminar
+                      </button>
+                    </form>
+                  </div>
+                </td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    {{else}}
+      <div class="empty-state">
+        <div class="empty-state-title">No se encontraron avistamientos registrados</div>
+        <p class="small text-muted mb-0">
+          {{#if categoriaSeleccionada}}
+            No hay registros en la categoría <strong>{{categoriaSeleccionada}}</strong>. <a href="/">Ver todos</a>.
+          {{else}}
+            Utiliza el formulario superior o envía una petición <code>POST /api/avistamientos</code> desde Postman para crear el primer registro.
+          {{/if}}
+        </p>
+      </div>
+    {{/if}}
+  </div>
+</div>

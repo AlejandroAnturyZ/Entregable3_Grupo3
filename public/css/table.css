@@ -1,0 +1,176 @@
+.filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: var(--bio-bg-surface);
+  padding: 6px 12px;
+  border-radius: var(--bio-radius-sm);
+  border: 1px solid var(--bio-border);
+}
+
+.count-pill {
+  background-color: var(--bio-primary-light);
+  color: var(--bio-primary);
+  border: 1px solid var(--bio-border-strong);
+  font-weight: 700;
+  font-size: 0.8rem;
+  padding: 3px 10px;
+  border-radius: 999px;
+  margin-left: 6px;
+}
+
+.bio-table {
+  margin-bottom: 0;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.bio-table thead th {
+  background-color: var(--bio-bg-main);
+  color: var(--bio-text-muted);
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 13px 16px;
+  border-bottom: 1px solid var(--bio-border);
+}
+
+.bio-row {
+  transition: var(--bio-transition);
+}
+
+.bio-row td {
+  padding: 15px 16px;
+  border-bottom: 1px solid #edf5f0;
+  vertical-align: middle;
+}
+
+.bio-row:hover td {
+  background-color: #f7fcf9;
+}
+
+.species-name {
+  font-weight: 700;
+  color: var(--bio-text-main);
+  font-size: 0.96rem;
+}
+
+.scientific-name {
+  font-style: italic;
+  color: var(--bio-text-muted);
+  font-size: 0.83rem;
+}
+
+.zone-text {
+  color: var(--bio-text-main);
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.researcher-text {
+  color: var(--bio-text-muted);
+  font-size: 0.88rem;
+}
+
+.date-text {
+  color: var(--bio-text-muted);
+  font-size: 0.82rem;
+}
+
+.id-badge {
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-size: 0.76rem;
+  background-color: var(--bio-bg-main);
+  color: var(--bio-primary);
+  border: 1px solid var(--bio-border);
+  padding: 4px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: inline-block;
+  transition: var(--bio-transition);
+}
+
+.id-badge:hover {
+  background-color: var(--bio-primary-light);
+  border-color: var(--bio-border-strong);
+}
+
+.badge-categoria {
+  display: inline-block;
+  padding: 4px 11px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  border: 1px solid transparent;
+}
+
+.cat-mamifero {
+  background-color: #fef3c7;
+  color: #92400e;
+  border-color: #fde68a;
+}
+
+.cat-ave {
+  background-color: #e0f2fe;
+  color: #0369a1;
+  border-color: #bae6fd;
+}
+
+.cat-reptil {
+  background-color: #ecfccb;
+  color: #3f6212;
+  border-color: #d9f99d;
+}
+
+.cat-anfibio {
+  background-color: #ccfbf1;
+  color: #115e59;
+  border-color: #99f6e4;
+}
+
+.cat-flora {
+  background-color: #dcfce7;
+  color: #166534;
+  border-color: #bbf7d0;
+}
+
+.badge-conservacion {
+  display: inline-block;
+  padding: 4px 11px;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.badge-menor {
+  background-color: #dcfce7;
+  color: #15803d;
+  border: 1px solid #bbf7d0;
+}
+
+.badge-vulnerable {
+  background-color: #fef3c7;
+  color: #b45309;
+  border: 1px solid #fde68a;
+}
+
+.badge-peligro {
+  background-color: #fee2e2;
+  color: #b91c1c;
+  border: 1px solid #fecaca;
+}
+
+.empty-state {
+  padding: 48px 24px;
+  text-align: center;
+  background-color: var(--bio-bg-surface);
+}
+
+.empty-state-title {
+  color: var(--bio-primary);
+  font-weight: 700;
+  font-size: 1.02rem;
+  margin-bottom: 6px;
+}
+

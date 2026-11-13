@@ -1,0 +1,130 @@
+.bio-label {
+  color: var(--bio-text-main);
+  font-weight: 600;
+  font-size: 0.86rem;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.bio-required {
+  color: var(--bio-danger);
+  margin-left: 2px;
+}
+
+.bio-input,
+.bio-select {
+  background-color: #fbfdfc;
+  border: 1px solid var(--bio-border);
+  border-radius: var(--bio-radius-sm);
+  color: var(--bio-text-main);
+  padding: 10px 13px;
+  font-size: 0.93rem;
+  transition: var(--bio-transition);
+}
+
+.bio-input:hover,
+.bio-select:hover {
+  border-color: var(--bio-border-strong);
+  background-color: var(--bio-bg-surface);
+}
+
+.bio-input:focus,
+.bio-select:focus {
+  background-color: var(--bio-bg-surface);
+  border-color: var(--bio-primary);
+  box-shadow: 0 0 0 3px rgba(22, 101, 52, 0.14);
+  outline: none;
+}
+
+.bio-highlight-field {
+  background-color: var(--bio-bg-soft);
+  border: 1px solid var(--bio-border-strong);
+  border-radius: var(--bio-radius-sm);
+  padding: 14px;
+}
+
+.bio-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 8px 16px;
+  border-radius: var(--bio-radius-sm);
+  font-weight: 600;
+  font-size: 0.88rem;
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  transition: var(--bio-transition);
+}
+
+.bio-btn:hover {
+  transform: translateY(-1px);
+}
+
+.bio-btn:active {
+  transform: translateY(0);
+}
+
+.bio-btn-primary {
+  background-color: var(--bio-primary);
+  color: #ffffff;
+  box-shadow: 0 3px 10px rgba(22, 101, 52, 0.18);
+}
+
+.bio-btn-primary:hover {
+  background-color: var(--bio-primary-hover);
+  color: #ffffff;
+}
+
+.bio-btn-soft {
+  background-color: var(--bio-bg-soft);
+  color: var(--bio-primary);
+  border-color: var(--bio-border-strong);
+}
+
+.bio-btn-soft:hover {
+  background-color: var(--bio-bg-accent);
+  color: var(--bio-primary-hover);
+}
+
+.bio-btn-outline {
+  background-color: var(--bio-bg-surface);
+  color: var(--bio-text-main);
+  border-color: var(--bio-border);
+}
+
+.bio-btn-outline:hover {
+  background-color: var(--bio-bg-soft);
+  border-color: var(--bio-border-strong);
+  color: var(--bio-primary);
+}
+
+.bio-btn-amber {
+  background-color: var(--bio-amber-bg);
+  color: var(--bio-amber);
+  border-color: #fcd34d;
+}
+
+.bio-btn-amber:hover {
+  background-color: #fde68a;
+  color: #92400e;
+}
+
+.bio-btn-danger-outline {
+  background-color: var(--bio-bg-surface);
+  color: var(--bio-danger);
+  border-color: #fecaca;
+}
+
+.bio-btn-danger-outline:hover {
+  background-color: var(--bio-danger-bg);
+  border-color: #f87171;
+  color: var(--bio-danger);
+}
+
+.bio-btn-sm {
+  padding: 5px 11px;
+  font-size: 0.8rem;
+}
+

@@ -1,0 +1,7 @@
+node_modules/
+npm-debug.log*
+.DS_Store
+.postman/
+postman/
+biocaqueta-postman/
+BioCaquetá - API Monitoreo de Biodiversidad (UDLA)/
